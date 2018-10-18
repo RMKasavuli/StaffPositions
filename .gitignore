@@ -3,3 +3,9 @@
 ################################################################################
 
 /StaffPositions/StaffPositions.WebUI.Tests/obj/Debug
+/StaffPositions/StaffPositions.WebUI/obj/Debug
+/StaffPositions/StaffPositions.Services/obj/Debug
+/StaffPositions/StaffPositions.DataAccess.SQL/obj/Debug
+/StaffPositions/StaffPositions.DataAccess.InMemory/obj/Debug
+/StaffPositions/StaffPositions.Core/obj/Debug
+/StaffPositions/.vs
