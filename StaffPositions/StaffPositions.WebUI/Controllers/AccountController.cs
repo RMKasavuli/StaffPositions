@@ -8,11 +8,11 @@ using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
-using MyShop.Core.Contracts;
-using MyShop.Core.Models;
-using MyShop.WebUI.Models;
+using StaffPositions.Core.Contracts;
+using StaffPositions.Core.Models;
+using StaffPositions.WebUI.Models;
 
-namespace MyShop.WebUI.Controllers
+namespace StaffPositions.WebUI.Controllers
 {
     [Authorize]
     public class AccountController : Controller

@@ -7,8 +7,8 @@
     <ProjectGuid>{F6DA49E3-9F96-4219-B1B1-C9D9EEB645FD}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>MyShop.Services</RootNamespace>
-    <AssemblyName>MyShop.Services</AssemblyName>
+    <RootNamespace>StaffPositions.Services</RootNamespace>
+    <AssemblyName>StaffPositions.Services</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

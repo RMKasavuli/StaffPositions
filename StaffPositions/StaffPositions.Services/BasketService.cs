@@ -1,6 +1,6 @@
-﻿using MyShop.Core.Contracts;
-using MyShop.Core.Models;
-using MyShop.Core.ViewModels;
+﻿using StaffPositions.Core.Contracts;
+using StaffPositions.Core.Models;
+using StaffPositions.Core.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web;
 
-namespace MyShop.Services
+namespace StaffPositions.Services
 {
     public class BasketService: IBasketService
     {

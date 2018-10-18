@@ -1,5 +1,5 @@
-﻿using MyShop.Core.Contracts;
-using MyShop.Core.Models;
+﻿using StaffPositions.Core.Contracts;
+using StaffPositions.Core.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +7,7 @@ using System.Runtime.Caching;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MyShop.DataAccess.InMemory
+namespace StaffPositions.DataAccess.InMemory
 {
     public class InMemoryRepository<T> : IRepository<T> where T :BaseEntity//generic class
     {

@@ -1,18 +1,18 @@
 using System;
 using Unity;
-using MyShop.DataAccess.InMemory;
-using MyShop.Core.ViewModels;
-using MyShop.Core.Contracts;
-using MyShop.Core.Models;
-using MyShop.DataAccess.SQL;
-using MyShop.Services;
-using MyShop.WebUI.Controllers;
+using StaffPositions.DataAccess.InMemory;
+using StaffPositions.Core.ViewModels;
+using StaffPositions.Core.Contracts;
+using StaffPositions.Core.Models;
+using StaffPositions.DataAccess.SQL;
+using StaffPositions.Services;
+using StaffPositions.WebUI.Controllers;
 using Unity.Injection;
-using MyShop.WebUI.Models;
+using StaffPositions.WebUI.Models;
 using Microsoft.AspNet.Identity;
 //using Microsoft.AspNet.Identity;
 
-namespace MyShop.WebUI
+namespace StaffPositions.WebUI
 {
     /// <summary>
     /// Specifies the Unity configuration for the main container.

@@ -1,13 +1,13 @@
-﻿using MyShop.Core.Contracts;
-using MyShop.Core.Models;
-using MyShop.Core.ViewModels;
+﻿using StaffPositions.Core.Contracts;
+using StaffPositions.Core.Models;
+using StaffPositions.Core.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace MyShop.WebUI.Controllers
+namespace StaffPositions.WebUI.Controllers
 {
     public class HomeController : Controller
     {

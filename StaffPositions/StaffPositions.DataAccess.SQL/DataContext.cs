@@ -1,4 +1,4 @@
-﻿using MyShop.Core.Models;
+﻿using StaffPositions.Core.Models;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MyShop.DataAccess.SQL
+namespace StaffPositions.DataAccess.SQL
 {
     public class DataContext: DbContext
     {
@@ -23,15 +23,24 @@ namespace MyShop.DataAccess.SQL
         public DbSet<BasketItem> BasketItems { get; set; }
         public DbSet<Customer> Customers { get; set; }
 
-        //protected override void OnModelCreating(DbModelBuilder modelBuilder)
-        //{
-        //    //.HasOptional(e => e.Manager)
-        //    //       . WithMany()
-        //    modelBuilder.Entity<Employee>()
-        //        .
-        //      .HasForeignKey(m => m.ManagerID)
-              
-        //      ;
-        //}
+        #region Properties
+        //Add model to the database
+        public DbSet<Developer> Developers { get; set; }
+        #endregion
+
+        #region Methods
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Developer>()
+              .HasOptional(e => e.TeamLead)
+              .WithMany()
+              .HasForeignKey(m => m.TeamLeadID);
+
+            modelBuilder.Entity<Developer>()
+              .HasOptional(e => e.Manager)
+              .WithMany()
+              .HasForeignKey(m => m.ManagerID);
+        }
+        #endregion
     }
 }

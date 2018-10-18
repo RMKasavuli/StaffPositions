@@ -5,9 +5,9 @@ using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.Google;
 using Owin;
-using MyShop.WebUI.Models;
+using StaffPositions.WebUI.Models;
 
-namespace MyShop.WebUI
+namespace StaffPositions.WebUI
 {
     public partial class Startup
     {

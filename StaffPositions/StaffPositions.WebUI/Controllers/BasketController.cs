@@ -1,11 +1,11 @@
-﻿using MyShop.Core.Contracts;
+﻿using StaffPositions.Core.Contracts;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace MyShop.WebUI.Controllers
+namespace StaffPositions.WebUI.Controllers
 {
     public class BasketController : Controller
     {

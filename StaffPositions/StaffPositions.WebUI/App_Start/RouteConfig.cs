@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 
-namespace MyShop.WebUI
+namespace StaffPositions.WebUI
 {
     public class RouteConfig
     {

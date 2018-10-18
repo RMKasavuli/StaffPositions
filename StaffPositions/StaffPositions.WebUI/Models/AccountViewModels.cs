@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace MyShop.WebUI.Models
+namespace StaffPositions.WebUI.Models
 {
     public class ExternalLoginConfirmationViewModel
     {

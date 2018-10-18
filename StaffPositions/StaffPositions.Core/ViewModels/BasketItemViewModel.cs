@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MyShop.Core.ViewModels
+namespace StaffPositions.Core.ViewModels
 {
     public class BasketItemViewModel
     {

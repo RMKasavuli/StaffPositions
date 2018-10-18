@@ -4,12 +4,12 @@ using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using MyShop.Core.Contracts;
-using MyShop.Core.Models;
-using MyShop.Core.ViewModels;
-using MyShop.DataAccess.InMemory;
+using StaffPositions.Core.Contracts;
+using StaffPositions.Core.Models;
+using StaffPositions.Core.ViewModels;
+using StaffPositions.DataAccess.InMemory;
 
-namespace MyShop.WebUI.Controllers
+namespace StaffPositions.WebUI.Controllers
 {
     public class ProductManagerController : Controller
     {

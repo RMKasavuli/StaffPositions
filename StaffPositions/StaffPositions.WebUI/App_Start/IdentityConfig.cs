@@ -10,9 +10,9 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security;
-using MyShop.WebUI.Models;
+using StaffPositions.WebUI.Models;
 
-namespace MyShop.WebUI
+namespace StaffPositions.WebUI
 {
     public class EmailService : IIdentityMessageService
     {

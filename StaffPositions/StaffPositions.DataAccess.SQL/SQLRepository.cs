@@ -1,5 +1,5 @@
-﻿using MyShop.Core.Contracts;
-using MyShop.Core.Models;
+﻿using StaffPositions.Core.Contracts;
+using StaffPositions.Core.Models;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MyShop.DataAccess.SQL
+namespace StaffPositions.DataAccess.SQL
 {
     public class SQLRepository<T> : IRepository<T>  where T : BaseEntity
     {
