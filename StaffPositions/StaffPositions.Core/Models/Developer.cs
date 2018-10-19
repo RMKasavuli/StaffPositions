@@ -11,16 +11,20 @@ namespace StaffPositions.Core.Models
     public class Developer: BaseEntity
     {
 
-        
+        [Required]
         [StringLength(20)]
-        [DisplayName("Employee First Name")]
+        [DisplayName("First Name")]
         public string FirstName { get; set; }
+        [Required]
         [StringLength(20)]
-        [DisplayName("Employee Last Name")]
+        [DisplayName("Last Name")]
         public string LastName { get; set; }
 
+        [Required]
         public string Email { get; set; }
         public string Position { get; set; }
+
+        [DisplayName("Profile Picture")]
         public string Photo { get; set; }
 
         #region Properties
@@ -34,4 +38,6 @@ namespace StaffPositions.Core.Models
         public Developer Manager { get; set; }
         #endregion
     }
+
+  
 }

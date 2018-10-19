@@ -11,10 +11,5 @@ namespace StaffPositions.Core.Models
         //public string Id { get; set; }, base entity already has an Id
         public string Category { get; set; }
 
-        //constructor to generate Id whenever a category is created, base entity already has an Id
-        //public ProductCategory ()
-        //{
-        //    this.Id = Guid.NewGuid().ToString();
-        //}
     }
 }

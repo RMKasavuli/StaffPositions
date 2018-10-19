@@ -10,7 +10,6 @@ namespace StaffPositions.Core.ViewModels
     public class ProductListViewModel
     {
         //store product object
-        
         public IEnumerable<Product> Products { get; set; }
         public IEnumerable<ProductCategory> ProductCategories { get; set; }
     }

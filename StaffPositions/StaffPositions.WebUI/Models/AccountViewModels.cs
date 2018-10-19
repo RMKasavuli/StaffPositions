@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.Web.WebPages.Html;
 
 namespace StaffPositions.WebUI.Models
 {
@@ -76,21 +78,36 @@ namespace StaffPositions.WebUI.Models
         public string Password { get; set; }
 
         [DataType(DataType.Password)]
-        [Display(Name = "Confirm password")]
+        [Display(Name = "Confirm Password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
 
         [Required]
+        [StringLength(20)]
+        [DisplayName("First Name")]
         public string FirstName { get; set; }
         [Required]
+        [StringLength(20)]
+        [DisplayName("Last Name")]
         public string LastName { get; set; }
         [Required]
-        public string Street { get; set; }
-        [Required]
-        public string City { get; set; }
-        public string State { get; set; }
-        [Required]
-        public string ZipCode { get; set; }
+        public string Position { get; set; }
+        [DisplayName("Profile Picture")]
+        public string Photo { get; set; }
+
+        [DisplayName("Position")]
+        public int PositionId { get; set; }
+        public List<string> Positions = new List<string>
+        { "Manager","Team Lead", "Developer"};// { "Manager", "Developer" }
+      
+
+        //[Required]
+        //public string Street { get; set; }
+        //[Required]
+        //public string City { get; set; }
+        //public string State { get; set; }
+        //[Required]
+        //public string ZipCode { get; set; }//
     }
 
     public class ResetPasswordViewModel

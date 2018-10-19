@@ -1,4 +1,4 @@
-﻿@model StaffPositions.Core.ViewModels.ProductListViewModel
+﻿@model StaffPositions.Core.ViewModels.DeveloperListViewModel
 @{ 
     ViewBag.Title = "Home Page";
 }
@@ -6,19 +6,19 @@
 <h1>Products</h1>
 
 <div class="col-md-2">
-    <h4>Filter by Category</h4>
+    <h4>Filter by Position</h4>
     <div class="list-group">
-        @Html.ActionLink("All","Index",null,new { @class = Request["Category"] == null ? "list-group-item active" : "list-group-item" })
-        @foreach (var cat in Model.ProductCategories)
+        @Html.ActionLink("All","Index",null,new { @class = Request["Position"] == null ? "list-group-item active" : "list-group-item" })
+        @foreach (var pos in Model.DeveloperPositions)
         {
-            @Html.ActionLink(cat.Category, "Index", new { Category = cat.Category }, new { @class = Request["Category"] == cat.Category ? "list-group-item active" : "list-group-item" })
+            @Html.ActionLink(pos.Category, "Index", new { Category = cat.Category }, new { @class = Request["Position"] == pos.Position ? "list-group-item active" : "list-group-item" })
         }
     </div>
 
 </div>
 
 <div class="col-md-10">
-    @foreach (var item in Model.Products)
+    @foreach (var item in Model.Developers)
     {
         <div class="col-md-4" style="height:440px;padding:10px;margin:10px;border: solid thin whitesmoke">
             <div class="col-md-12">
@@ -31,12 +31,12 @@
             </div>
             <div class="col-md-12">
                 <p>
-                    @item.Description
+                    @*@item.Description*@
                 </p>
             </div>
             <dd class="col-md-12">
                 <h4>
-                    @item.Price
+                    @*@item.Price*@
                 </h4>
             </dd>
             <div class="col-md-12">
