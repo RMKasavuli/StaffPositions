@@ -13,7 +13,7 @@ namespace StaffPositions.DataAccess.SQL.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201810191027587_Initial"; }
+            get { return "201810192049011_Initial"; }
         }
         
         string IMigrationMetadata.Source

@@ -206,6 +206,8 @@
     <Compile Include="App_Start\UnityMvcActivator.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BasketController.cs" />
+    <Compile Include="Controllers\DeveloperManagerController.cs" />
+    <Compile Include="Controllers\DeveloperPositionManagerController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ProductCategoryManagerController.cs" />
@@ -334,9 +336,17 @@
     <Content Include="Views\Home\Details.cshtml" />
     <Content Include="Views\Basket\Index.cshtml" />
     <Content Include="Views\Basket\BasketSummary.cshtml" />
+    <Content Include="Views\DeveloperManager\Edit.cshtml" />
+    <Content Include="Views\DeveloperManager\Delete.cshtml" />
+    <Content Include="Views\DeveloperManager\Index.cshtml" />
+    <Content Include="Views\DeveloperPositionManager\Index.cshtml" />
+    <Content Include="Views\DeveloperPositionManager\Create.cshtml" />
+    <Content Include="Views\DeveloperPositionManager\Edit.cshtml" />
+    <Content Include="Views\DeveloperPositionManager\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Content\DeveloperProfiles\" />
     <Folder Include="Content\ProductImages\" />
   </ItemGroup>
   <ItemGroup>

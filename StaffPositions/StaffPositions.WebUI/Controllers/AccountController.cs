@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
@@ -631,7 +632,7 @@ namespace StaffPositions.WebUI.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Register(RegisterViewModel model)
+        public async Task<ActionResult> Register(RegisterViewModel model, HttpPostedFileBase file)
         {
             if (ModelState.IsValid)
             {
@@ -646,9 +647,17 @@ namespace StaffPositions.WebUI.Controllers
                         LastName = model.LastName,
                         Position = model.Position,
                         Photo = model.Photo,
+
                         Email = model.Email,
                         Id = user.Id,
                     };
+
+                    //from postedfile
+                    if (file != null)
+                    {
+                        developer.Photo = user.Id + Path.GetExtension(file.FileName);//remane to always have a unique file reference
+                        file.SaveAs(Server.MapPath("//Content//DeveloperProfiles//") + model.Photo);//save the product image into the ProductImages folder
+                    }
 
                     developerRepository.Insert(developer);
                     developerRepository.Commit();

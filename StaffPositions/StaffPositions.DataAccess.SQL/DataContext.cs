@@ -22,11 +22,11 @@ namespace StaffPositions.DataAccess.SQL
         public DbSet<Basket> Baskets { get; set; }
         public DbSet<BasketItem> BasketItems { get; set; }
         public DbSet<Customer> Customers { get; set; }
-        public DbSet<DeveloperPosition> DeveloperPositions { get; set; }
-
+        
         #region Properties
         //Add model to the database
         public DbSet<Developer> Developers { get; set; }
+        public DbSet<DeveloperPosition> DeveloperPositions { get; set; }
         #endregion
 
         #region Methods

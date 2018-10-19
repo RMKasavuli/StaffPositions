@@ -1,17 +1,17 @@
-﻿@model StaffPositions.Core.ViewModels.DeveloperListViewModel
-@{ 
+﻿@model MyShop.Core.ViewModels.DeveloperListViewModel
+@{
     ViewBag.Title = "Home Page";
 }
 
-<h1>Products</h1>
+<h1>Staff</h1>
 
 <div class="col-md-2">
     <h4>Filter by Position</h4>
     <div class="list-group">
-        @Html.ActionLink("All","Index",null,new { @class = Request["Position"] == null ? "list-group-item active" : "list-group-item" })
+        @Html.ActionLink("All", "Index", null, new { @class = Request["Position"] == null ? "list-group-item active" : "list-group-item" })
         @foreach (var pos in Model.DeveloperPositions)
         {
-            @Html.ActionLink(pos.Category, "Index", new { Category = cat.Category }, new { @class = Request["Position"] == pos.Position ? "list-group-item active" : "list-group-item" })
+            @Html.ActionLink(pos.Position, "Index", new { Position = pos.Position }, new { @class = Request["Position"] == pos.Position ? "list-group-item active" : "list-group-item" })
         }
     </div>
 
@@ -40,14 +40,14 @@
                 </h4>
             </dd>
             <div class="col-md-12">
-                <a href="@Url.Action("AddToBasket","Basket",new { Id=item.Id })" class="btn btn-default">Add to Basket</a>
+                @*<a href="@Url.Action("AddToBasket","Basket",new { Id=item.Id })" class="btn btn-default">Add to Basket</a>*@
             </div>
 
         </div>
 
     }
 </div>
-    <div class="col-md-12 clearfix" />
+<div class="col-md-12 clearfix" />
 
 
 

@@ -7,12 +7,11 @@ using System.Threading.Tasks;
 
 namespace StaffPositions.Core.ViewModels
 {
-    public class DeveloperListViewModel
+    public class DeveloperManagerViewModel
     {
         //store developer object
 
-        public IEnumerable<Developer> Developers { get; set; }
+        public Developer Developer { get; set; }
         public IEnumerable<DeveloperPosition> DeveloperPositions { get; set; }
-      
     }
 }

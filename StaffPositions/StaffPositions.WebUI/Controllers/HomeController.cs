@@ -74,24 +74,20 @@ namespace StaffPositions.WebUI.Controllers
 
 
         IRepository<Developer> context;
-        //IRepository<DeveloperPosition> developerPositions;
+        IRepository<DeveloperPosition> developerPositions;
 
-        //public HomeController(IRepository<Developer> developerContext, IRepository<DeveloperPosition> developerPositionContext)
-        public HomeController(IRepository<Developer> developerContext)
+        public HomeController(IRepository<Developer> developerContext, IRepository<DeveloperPosition> developerPositionContext)
         {
             context = developerContext;
-            //developerPositions = developerPositionContext;
+            developerPositions = developerPositionContext;
         }
 
         public ActionResult Index(string Position = null)
         {
             //get the list of developers, send them to the main view
             List<Developer> developers = context.Collection().ToList();
-           // List<DeveloperPosition> positions = developerPositions.Collection().ToList();
-            List<string> positions = new List<string>();
-            positions.Add("Manager");
-            positions.Add("Team Lead");
-            positions.Add("Developer");
+            List<DeveloperPosition> positions = developerPositions.Collection().ToList();
+          
 
             if (Position == null)
             {
