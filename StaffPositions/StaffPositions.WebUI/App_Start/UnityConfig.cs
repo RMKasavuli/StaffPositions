@@ -60,7 +60,7 @@ namespace StaffPositions.WebUI
             container.RegisterType<IRepository<Customer>, SQLRepository<Customer>>();
             container.RegisterType<IBasketService, BasketService>();
 
-            container.RegisterType<IRepository<Developer>, SQLRepository<Developer>>();
+            container.RegisterType<IDeveloperRepository<Developer>, SQLDeveloperRepository<Developer>>();
             container.RegisterType<IRepository<DeveloperPosition>, SQLRepository<DeveloperPosition>>();
             //container.RegisterType<AccountController>(new InjectionConstructor());
 

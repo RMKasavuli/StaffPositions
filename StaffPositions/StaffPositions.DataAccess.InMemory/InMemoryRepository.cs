@@ -11,7 +11,7 @@ namespace StaffPositions.DataAccess.InMemory
 {
     public class InMemoryRepository<T> : IRepository<T> where T :BaseEntity//generic class
     {
-        //objects
+        //objects/
         ObjectCache cache = MemoryCache.Default;
         List<T> items;
         string className;

@@ -1,39 +1,32 @@
-﻿@model StaffPositions.Core.Models.Product
+﻿@model StaffPositions.Core.Models.Developer
 
 @{ 
-    ViewBag.Title = Model.Name + " Details";
+    ViewBag.Title = Model.FullName + " Details";
 }
 
 <h2>
-    @Html.DisplayFor(model => model.Name)
+    @Html.DisplayFor(model => model.FullName)
 </h2>
 
 <div>
     <div class="col-md-2">
-        <img class="img-responsive" src="~/Content/ProductImages/@Model.Image"/>
+        <img class="img-responsive" src="~/Content/DeveloperProfiles/@Model.Photo"/>
     </div>
     <div class="col-md-10">
         <dl class="dl-horizontal">
 
+
             <dt>
-                @Html.DisplayNameFor(model => model.Description)
+                @Html.DisplayNameFor(model => model.Position)
             </dt>
 
             <dd>
-                @Html.DisplayFor(model => model.Description)
-            </dd>
-
-            <dt>
-                @Html.DisplayNameFor(model => model.Price)
-            </dt>
-
-            <dd>
-                R @Html.DisplayFor(model => model.Price)
+                @Html.DisplayFor(model => model.Position)
             </dd>
 
             <dt></dt>
             <dd>
-                <a href="@Url.Action("AddToBasket","Basket",new { Id=Model.Id })" class="btn btn-default">Add to Basket</a>
+                @*<a href="@Url.Action("AddToBasket","Basket",new { Id=Model.Id })" class="btn btn-default">Add to Basket</a>*@
             </dd>
 
             <dt></dt>

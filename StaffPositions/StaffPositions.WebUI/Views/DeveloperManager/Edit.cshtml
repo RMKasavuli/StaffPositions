@@ -15,7 +15,7 @@
         <h4>Developer</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(model => model.Developer.Id)
+        @Html.HiddenFor(model => model.Developer.DeveloperId)
 
         <div class="col-md-2">
             <img class="img-responsive" src="~/Content/DeveloperProfiles/@Model.Developer.Photo" />
@@ -41,6 +41,15 @@
                 @Html.LabelFor(model => model.Developer.Position, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
                     @Html.DropDownListFor(model => model.Developer.Position, new SelectList(Model.DeveloperPositions, "Position", "Position"), new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Developer.SuperiorName, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @*@Html.DropDownListFor(model => model.PotentialSuperiors, new SelectList(Model.DeveloperPositions, "FullName", "FullName"), new { htmlAttributes = new { @class = "form-control" } })
+        @Html.DropDownListFor(model => model.PotentialSuperiors, Model.PotentialSuperiors, new { @class = "form-control" })*@
+                    @Html.DropDownListFor(model => model.Developer.SuperiorName, new SelectList(Model.PotentialSuperiors, "FullName", "FullName"), new { htmlAttributes = new { @class = "form-control" } })
                 </div>
             </div>
 

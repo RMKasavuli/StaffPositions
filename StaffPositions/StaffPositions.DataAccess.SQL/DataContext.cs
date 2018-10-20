@@ -33,14 +33,10 @@ namespace StaffPositions.DataAccess.SQL
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Developer>()
-              .HasOptional(e => e.TeamLead)
+              .HasKey(e => e.DeveloperId)
+              .HasOptional(e => e.Superior)
               .WithMany()
-              .HasForeignKey(m => m.TeamLeadID);
-
-            modelBuilder.Entity<Developer>()
-              .HasOptional(e => e.Manager)
-              .WithMany()
-              .HasForeignKey(m => m.ManagerID);
+              .HasForeignKey(m => m.SuperiorID);
         }
         #endregion
     }

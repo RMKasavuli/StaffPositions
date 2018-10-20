@@ -19,6 +19,8 @@ namespace StaffPositions.Core.Models
         [StringLength(20)]
         [DisplayName("Last Name")]
         public string LastName { get; set; }
+        [DisplayName("Full Name")]
+        public string FullName { get; set; }
 
         [Required]
         public string Email { get; set; }
@@ -26,16 +28,16 @@ namespace StaffPositions.Core.Models
 
         [DisplayName("Profile Picture")]
         public string Photo { get; set; }
+       
 
         #region Properties
 
-        [Key]
         public int DeveloperId { get; set; }
-        public int? TeamLeadID { get; set; } 
-        public Developer TeamLead { get; set; }
+        public int? SuperiorID { get; set; }
+        [DisplayName("Supervised By")]
+        public string SuperiorName { get; set; }
+        public Developer Superior { get; set; }
 
-        public int? ManagerID { get; set; }
-        public Developer Manager { get; set; }
         #endregion
     }
 
