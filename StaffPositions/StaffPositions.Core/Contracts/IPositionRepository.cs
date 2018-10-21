@@ -3,7 +3,7 @@ using StaffPositions.Core.Models;
 
 namespace StaffPositions.Core.Contracts
 {
-    public interface IRepository<T> where T : BaseEntity
+    public interface IPositionRepository<T> where T : BaseEntity
     {
         IQueryable<T> Collection();
         void Commit();

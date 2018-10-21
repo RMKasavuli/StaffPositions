@@ -9,13 +9,14 @@ using System.Threading.Tasks;
 
 namespace StaffPositions.DataAccess.SQL
 {
-    public class SQLRepository<T> : IRepository<T>  where T : BaseEntity
+    //Positions Repository to link the data in the SQL table to the data context EF Code First
+    public class SQLPositionRepository<T> : IPositionRepository<T>  where T : BaseEntity
     {
-
         internal DataContext context;
         internal DbSet<T> dbSet;
+
         //constructor to pass the context
-        public SQLRepository(DataContext context)
+        public SQLPositionRepository(DataContext context)
         {
             this.context = context;
             this.dbSet = context.Set<T>(); 
@@ -23,19 +24,16 @@ namespace StaffPositions.DataAccess.SQL
 
         public IQueryable<T> Collection()
         {
-            //throw new NotImplementedException();
             return dbSet;
         }
 
         public void Commit()
         {
-            //throw new NotImplementedException();
             context.SaveChanges();
         }
 
         public void Delete(string Id)
         {
-            //throw new NotImplementedException();
             var t = Find(Id);
             if (context.Entry(t).State == EntityState.Detached)
                 dbSet.Attach(t);
@@ -44,19 +42,16 @@ namespace StaffPositions.DataAccess.SQL
 
         public T Find(string Id)
         {
-            //throw new NotImplementedException();
             return dbSet.Find(Id);
         }
 
         public void Insert(T t)
         {
-            //throw new NotImplementedException();
             dbSet.Add(t);
         }
 
         public void Update(T t)
         {
-            //throw new NotImplementedException();
             //attach the model then simplify it, specify the entry to modify
             dbSet.Attach(t);
             context.Entry(t).State = EntityState.Modified;

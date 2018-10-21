@@ -29,7 +29,6 @@ namespace StaffPositions.Core.Models
         [DisplayName("Profile Picture")]
         public string Photo { get; set; }
        
-
         #region Properties
 
         public int DeveloperId { get; set; }

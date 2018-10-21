@@ -9,9 +9,9 @@ using System.Threading.Tasks;
 
 namespace StaffPositions.DataAccess.SQL
 {
+    //Developers Repository to link the data in the SQL table to the data context EF Code First
     public class SQLDeveloperRepository<T> : IDeveloperRepository<T> where T : Developer
     {
-
         internal DataContext context;
         internal DbSet<T> dbSet;
         //constructor to pass the context
@@ -23,19 +23,16 @@ namespace StaffPositions.DataAccess.SQL
 
         public IQueryable<T> Collection()
         {
-            //throw new NotImplementedException();
             return dbSet;
         }
 
         public void Commit()
         {
-            //throw new NotImplementedException();
             context.SaveChanges();
         }
 
         public void Delete(int DeveloperId)
         {
-            //throw new NotImplementedException();
             var t = Find(DeveloperId);
             if (context.Entry(t).State == EntityState.Detached)
                 dbSet.Attach(t);
@@ -44,19 +41,16 @@ namespace StaffPositions.DataAccess.SQL
 
         public T Find(int DeveloperId)
         {
-            //throw new NotImplementedException();
             return dbSet.Find(DeveloperId);
         }
 
         public void Insert(T t)
         {
-            //throw new NotImplementedException();
             dbSet.Add(t);
         }
 
         public void Update(T t)
         {
-            //throw new NotImplementedException();
             //attach the model then simplify it, specify the entry to modify
             dbSet.Attach(t);
             context.Entry(t).State = EntityState.Modified;

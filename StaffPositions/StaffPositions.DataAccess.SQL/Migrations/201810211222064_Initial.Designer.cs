@@ -7,13 +7,13 @@ namespace StaffPositions.DataAccess.SQL.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class AddDevelopers : IMigrationMetadata
+    public sealed partial class Initial : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(AddDevelopers));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(Initial));
         
         string IMigrationMetadata.Id
         {
-            get { return "201810201826585_AddDevelopers"; }
+            get { return "201810211222064_Initial"; }
         }
         
         string IMigrationMetadata.Source

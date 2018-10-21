@@ -11,11 +11,10 @@ namespace StaffPositions.WebUI.Controllers
 {
     public class HomeController : Controller
     {
-        
         IDeveloperRepository<Developer> context;
-        IRepository<DeveloperPosition> developerPositions;
+        IPositionRepository<DeveloperPosition> developerPositions;
 
-        public HomeController(IDeveloperRepository<Developer> developerContext, IRepository<DeveloperPosition> developerPositionContext)
+        public HomeController(IDeveloperRepository<Developer> developerContext, IPositionRepository<DeveloperPosition> developerPositionContext)
         {
             context = developerContext;
             developerPositions = developerPositionContext;
@@ -27,7 +26,6 @@ namespace StaffPositions.WebUI.Controllers
             List<Developer> developers = context.Collection().ToList();
             List<DeveloperPosition> positions = developerPositions.Collection().ToList();
           
-
             if (Position == null)
             {
                 developers = context.Collection().ToList();
@@ -44,10 +42,9 @@ namespace StaffPositions.WebUI.Controllers
             return View(model);//return the list to the view
         }
 
-        //create view developers
+        //create developer details view
         public ActionResult Details(int DeveloperId)
         {
-
             Developer developer = context.Find(DeveloperId);
             if (developer == null)
             {
@@ -57,20 +54,6 @@ namespace StaffPositions.WebUI.Controllers
             {
                 return View(developer);
             }
-        }
-
-        public ActionResult About()
-        {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
-        }
-
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
         }
     }
 }

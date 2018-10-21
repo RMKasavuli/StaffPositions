@@ -5,15 +5,14 @@ using System.Web;
 using System.Web.Mvc;
 using StaffPositions.Core.Contracts;
 using StaffPositions.Core.Models;
-using StaffPositions.DataAccess.InMemory;
 
 namespace StaffPositions.WebUI.Controllers
 {
     public class DeveloperPositionManagerController : Controller
     {
-        IRepository<DeveloperPosition> context;
+        IPositionRepository<DeveloperPosition> context;
 
-        public DeveloperPositionManagerController(IRepository<DeveloperPosition> context)
+        public DeveloperPositionManagerController(IPositionRepository<DeveloperPosition> context)
         {
             this.context = context;
         }

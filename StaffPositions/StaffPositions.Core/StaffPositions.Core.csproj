@@ -45,24 +45,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Contracts\IBasketService.cs" />
     <Compile Include="Contracts\IDeveloperRepository.cs" />
-    <Compile Include="Contracts\IRepository.cs" />
+    <Compile Include="Contracts\IPositionRepository.cs" />
     <Compile Include="Models\BaseEntity.cs" />
     <Compile Include="Models\Developer.cs" />
-    <Compile Include="Models\Basket.cs" />
-    <Compile Include="Models\BasketItem.cs" />
-    <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\DeveloperPosition.cs" />
-    <Compile Include="Models\Product.cs" />
-    <Compile Include="Models\ProductCategory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ViewModels\BasketItemViewModel.cs" />
-    <Compile Include="ViewModels\BasketSummaryViewModel.cs" />
     <Compile Include="ViewModels\DeveloperListViewModel.cs" />
     <Compile Include="ViewModels\DeveloperManagerViewModel.cs" />
-    <Compile Include="ViewModels\ProductListViewModel.cs" />
-    <Compile Include="ViewModels\ProductManagerViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

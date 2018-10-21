@@ -10,12 +10,9 @@ namespace StaffPositions.Core.ViewModels
 {
     public class DeveloperManagerViewModel
     {
-        //store developer object
-
+        //store developer, list of positions and list of potential superiors
         public Developer Developer { get; set; }
         public IEnumerable<DeveloperPosition> DeveloperPositions { get; set; }
-        
-        //public List<Developer> PotentialSuperiors { get; set; }
         public IEnumerable<Developer> PotentialSuperiors { get; set; }
     }
 }

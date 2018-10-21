@@ -1,11 +1,9 @@
 using System;
 using Unity;
-using StaffPositions.DataAccess.InMemory;
 using StaffPositions.Core.ViewModels;
 using StaffPositions.Core.Contracts;
 using StaffPositions.Core.Models;
 using StaffPositions.DataAccess.SQL;
-using StaffPositions.Services;
 using StaffPositions.WebUI.Controllers;
 using Unity.Injection;
 using StaffPositions.WebUI.Models;
@@ -51,19 +49,8 @@ namespace StaffPositions.WebUI
             // container.LoadConfiguration();
 
             // TODO: Register your type's mappings here.
-            // container.RegisterType<IProductRepository, ProductRepository>();
-            container.RegisterType<IRepository<Product>, SQLRepository<Product>>();
-            container.RegisterType<IRepository<ProductCategory>, SQLRepository<ProductCategory>>();
-
-            container.RegisterType<IRepository<Basket>, SQLRepository<Basket>>();
-            container.RegisterType<IRepository<BasketItem>, SQLRepository<BasketItem>>();
-            container.RegisterType<IRepository<Customer>, SQLRepository<Customer>>();
-            container.RegisterType<IBasketService, BasketService>();
-
             container.RegisterType<IDeveloperRepository<Developer>, SQLDeveloperRepository<Developer>>();
-            container.RegisterType<IRepository<DeveloperPosition>, SQLRepository<DeveloperPosition>>();
-            //container.RegisterType<AccountController>(new InjectionConstructor());
-
+            container.RegisterType<IPositionRepository<DeveloperPosition>, SQLPositionRepository<DeveloperPosition>>();
 
         }
     }

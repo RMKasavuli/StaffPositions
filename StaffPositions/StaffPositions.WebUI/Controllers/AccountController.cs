@@ -15,7 +15,6 @@ using StaffPositions.WebUI.Models;
 
 namespace StaffPositions.WebUI.Controllers
 {
-      
     //Developers Account Login
     [Authorize]
     public class AccountController : Controller
@@ -173,20 +172,14 @@ namespace StaffPositions.WebUI.Controllers
                     //from postedfile
                     if (file != null)
                     {
-                        developer.Photo = user.Id + Path.GetExtension(file.FileName);//remane to always have a unique file reference
-                        file.SaveAs(Server.MapPath("//Content//DeveloperProfiles//") + model.Photo);//save the product image into the ProductImages folder
+                        developer.Photo = developer.FullName + Path.GetExtension(file.FileName);//remane to always have a unique file reference
+                        file.SaveAs(Server.MapPath("//Content//DeveloperProfiles//") + developer.Photo);//save the developer image into the DeveloperProfiles folder
                     }
 
                     developerRepository.Insert(developer);
                     developerRepository.Commit();
 
                     await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
-
-                    // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
-                    // Send an email with this link
-                    // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
-                    // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
-                    // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
 
                     return RedirectToAction("Index", "Home");
                 }
@@ -234,12 +227,6 @@ namespace StaffPositions.WebUI.Controllers
                     return View("ForgotPasswordConfirmation");
                 }
 
-                // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
-                // Send an email with this link
-                // string code = await UserManager.GeneratePasswordResetTokenAsync(user.Id);
-                // var callbackUrl = Url.Action("ResetPassword", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);		
-                // await UserManager.SendEmailAsync(user.Id, "Reset Password", "Please reset your password by clicking <a href=\"" + callbackUrl + "\">here</a>");
-                // return RedirectToAction("ForgotPasswordConfirmation", "Account");
             }
 
             // If we got this far, something failed, redisplay form

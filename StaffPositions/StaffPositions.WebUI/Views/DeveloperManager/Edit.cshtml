@@ -6,7 +6,6 @@
 
 <h2>Edit</h2>
 
-
 @using (Html.BeginForm("Edit", "DeveloperManager", FormMethod.Post, new { encType = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
@@ -41,6 +40,8 @@
                 @Html.LabelFor(model => model.Developer.Position, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
                     @Html.DropDownListFor(model => model.Developer.Position, new SelectList(Model.DeveloperPositions, "Position", "Position"), new { htmlAttributes = new { @class = "form-control" } })
+                    @*@Html.DropDownListFor(model => model.Developer.Position, new SelectList(Model.DeveloperPositions, "Position", "Position"), new { @onchange = "this.form.submit();" })*@
+                    @*@Html.DropDownListFor(model => model.ID, (SelectList)ViewData["Student"], new { @onchange = "this.form.submit();" })*@
                 </div>
             </div>
 
@@ -48,7 +49,7 @@
                 @Html.LabelFor(model => model.Developer.SuperiorName, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
                     @*@Html.DropDownListFor(model => model.PotentialSuperiors, new SelectList(Model.DeveloperPositions, "FullName", "FullName"), new { htmlAttributes = new { @class = "form-control" } })
-        @Html.DropDownListFor(model => model.PotentialSuperiors, Model.PotentialSuperiors, new { @class = "form-control" })*@
+                        @Html.DropDownListFor(model => model.PotentialSuperiors, Model.PotentialSuperiors, new { @class = "form-control" })*@
                     @Html.DropDownListFor(model => model.Developer.SuperiorName, new SelectList(Model.PotentialSuperiors, "FullName", "FullName"), new { htmlAttributes = new { @class = "form-control" } })
                 </div>
             </div>
@@ -73,6 +74,20 @@
     @Html.ActionLink("Back to List", "Index")
 </div>
 
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}
+@*@section Scripts {*@
+    @*@Scripts.Render("~/bundles/jqueryval")*@
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+    <script>
+        //$(document).ready(function () {
+        $(document).on('change', '#Position', function () {
+            $("#Position").change(function () {
+                $.get("/DeveloperManager/GetSuperiorList", { Position: $("#Position").val() }, function (data) {
+                    $("#SuperiorName").empty();
+                    $.each(data, function (index, row) {
+                        $("#SuperiorName").append("<option value ='" + row.SuperiorName + "'>" + row.SuperiorName + "</option>")
+                    });
+            });
+        })
+      });
+    </script>
+@*}*@

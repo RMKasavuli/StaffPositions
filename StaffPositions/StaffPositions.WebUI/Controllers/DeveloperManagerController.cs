@@ -7,17 +7,17 @@ using System.Web.Mvc;
 using StaffPositions.Core.Contracts;
 using StaffPositions.Core.Models;
 using StaffPositions.Core.ViewModels;
-using StaffPositions.DataAccess.InMemory;
 using StaffPositions.DataAccess.SQL;
+using System.Runtime.InteropServices;
 
 namespace StaffPositions.WebUI.Controllers
 {
     public class DeveloperManagerController : Controller
     {
         IDeveloperRepository<Developer> context;
-        IRepository<DeveloperPosition> developerPositions;
+        IPositionRepository<DeveloperPosition> developerPositions;
 
-        public DeveloperManagerController(IDeveloperRepository<Developer> developerContext, IRepository<DeveloperPosition> developerPositionContext)
+        public DeveloperManagerController(IDeveloperRepository<Developer> developerContext, IPositionRepository<DeveloperPosition> developerPositionContext)
         {
             context = developerContext;
             developerPositions = developerPositionContext;
@@ -32,31 +32,41 @@ namespace StaffPositions.WebUI.Controllers
         //cretae new developer
         public ActionResult Create()//to display the page only
         {
-            DeveloperManagerViewModel ViewModel = new DeveloperManagerViewModel();
-            ViewModel.Developer = new Developer();
-            //get from the database
-            ViewModel.DeveloperPositions = developerPositions.Collection();
-            return View(ViewModel);
+            Developer model = new Developer();
+            return View(model);
         }
 
-        [HttpPost]//getting info from a page
-        public ActionResult Create(Developer developer, HttpPostedFileBase file)//to fill in the details
+        [HttpPost]//getting info from Create view
+        public ActionResult Create(Developer model, HttpPostedFileBase file)//to fill in the details
         {
+            
+            Developer developer = new Developer()
+            {
+                FirstName = model.FirstName,
+                LastName = model.LastName,
+                FullName = model.FirstName + " " + model.LastName,
+                Position = model.Position,
+                Photo = model.Photo,
+
+                Email = model.Email,
+                Id = Guid.NewGuid().ToString(),
+        };
+
             if (!ModelState.IsValid)
             {
-                return View(developer);//stay on the current page
+                return View(model);//stay on the current page
             }
             else
             {
-                //from postedfile
+                //from postedfile, dave profile picture
                 if (file != null)
                 {
-                    developer.Photo = developer.DeveloperId + Path.GetExtension(file.FileName);//remane to always have a unique file reference
+                    developer.Photo = developer.FullName + Path.GetExtension(file.FileName);//remane to always have a unique file reference
                     file.SaveAs(Server.MapPath("//Content//DeveloperProfiles//") + developer.Photo);//save the developer image into the DeveloperProfiles folder
                 }
-                //
+                
                 context.Insert(developer);//add developer to cache memory
-                context.Commit();//refresh cache memory
+                context.Commit();//refresh memory
 
                 return RedirectToAction("Index");//redirect to Index page, to view the updated list
             }
@@ -78,10 +88,9 @@ namespace StaffPositions.WebUI.Controllers
             {
                 DeveloperManagerViewModel ViewModel = new DeveloperManagerViewModel();
                 ViewModel.Developer = developer;
-                //get from the database
                 ViewModel.DeveloperPositions = developerPositions.Collection();
 
-                //Get developers potential supervisors from the database
+                //Get developers potential supervisors from the database based on his role
                 using (var dbContext = new DataContext())
                 {
                     //3 Cases
@@ -91,6 +100,7 @@ namespace StaffPositions.WebUI.Controllers
                                         .SqlQuery("SELECT * FROM [StaffPositions].[dbo].[Developers] where Position = 'Team Lead' ORDER BY FullName ASC")
                                         .ToList<Developer>();
                         ViewModel.PotentialSuperiors = potentialSuperiorsList;
+                        
                     }
                     else if (developer.Position == "Team Lead")
                     {
@@ -131,36 +141,32 @@ namespace StaffPositions.WebUI.Controllers
                 if (!ModelState.IsValid)
                 {
                     //return View(developer);//stay on the current page
-                    //return RedirectToAction("Index");//redirect to Index page, to view the updated list
+                    //do nothing
                 }
 
-                //update developer to edit//come back here
-                
+                //update developer to edit//
                 developerToEdit.FirstName = developer.FirstName;
                 developerToEdit.LastName = developer.LastName;
+                developerToEdit.FullName = developer.FirstName + " " + developer.LastName;
+                developerToEdit.Photo = developerToEdit.Photo;
                 developerToEdit.Position = developer.Position;
                 developerToEdit.SuperiorName = developer.SuperiorName;
 
-                //get superiorID from SQL
-                //developerToEdit.SuperiorID = developer.Superior.DeveloperId;
+                //from postedfile
+                if (file != null)
+                {
+                    developerToEdit.Photo = developerToEdit.FullName + Path.GetExtension(file.FileName);//remane to always have a unique file reference
+                    file.SaveAs(Server.MapPath("//Content//DeveloperProfiles//") + developerToEdit.Photo);//save the product image into the ProductImages folder
+                }
 
-                //reviens ici, get supervisor's name from the view
-               
-                //read SQL to find supervisor developerId and position
-                
-
+                //get superiorID from SQL in the future
+                // get supervisor's name from the view
+                //read SQL to find supervisor developerId and 
                 //if supervisor is manager, then set devtoedit managerid = supervisor dev Id and teamlead id to null
                 //elseif supervisor is teamlead, then set devtoedit teamleadid = supervisor dev Id and manager id to null
 
-                //developerToEdit.Superior = developer.Superior;
-                //developerToEdit.TeamLeadID = developer.TeamLeadID;
-                //developerToEdit.ManagerID = developer.ManagerID;
-
                 context.Commit();//refresh  memory
-
                 return RedirectToAction("Index");//redirect to Index page, to view the updated list
-
-
             }
         }
 
@@ -194,6 +200,30 @@ namespace StaffPositions.WebUI.Controllers
                 return RedirectToAction("Index");//redirect to Index page, to view the updated list
             }
 
+        }
+
+        //to update the superiors dropdown list based on the developer's position
+        public JsonResult GetSuperiorList(string Position)
+        {
+            List<Developer> potentialSuperiorsList = new List<Developer>();
+            using (var dbContext = new DataContext())
+            {
+                dbContext.Configuration.ProxyCreationEnabled = false;
+                if (Position == "Developer")
+                {
+                    potentialSuperiorsList = dbContext.Developers.Where(x => x.Position == "Team Lead").ToList();
+                }
+                else if (Position == "Team Lead")
+                {
+                    potentialSuperiorsList = dbContext.Developers.Where(x => x.Position == "Manager").ToList();
+                }
+                else
+                {
+                    potentialSuperiorsList.Add(new Developer { FirstName = "aaa", LastName = "aaa", FullName = "Not Supervised", Email = "aaaa@aaaa.aaa", Position = "aaa", Photo = "aaa", DeveloperId = 1000, SuperiorID = 10000, SuperiorName = "Not Supervised" });
+                }
+                
+            }
+            return Json(potentialSuperiorsList, JsonRequestBehavior.AllowGet)
         }
     }
 }
