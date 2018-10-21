@@ -3,7 +3,7 @@ namespace StaffPositions.DataAccess.SQL.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class AddDevelopers : DbMigration
+    public partial class AddMigrations : DbMigration
     {
         public override void Up()
         {

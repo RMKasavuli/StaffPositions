@@ -10,84 +10,83 @@
 {
     @Html.AntiForgeryToken()
 
-    <div class="form-horizontal">
-        <h4>Developer</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(model => model.Developer.DeveloperId)
+<div class="form-horizontal">
+    <h4>Employee</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.Developer.DeveloperId)
+    @Html.HiddenFor(model => model.DeveloperId)
 
-        <div class="col-md-2">
-            <img class="img-responsive" src="~/Content/DeveloperProfiles/@Model.Developer.Photo" />
+
+    <div class="col-md-2">@*  *@
+        <img class="img-responsive" src="~/Content/DeveloperProfiles/@Model.Developer.Photo" />
+    </div>
+    <div class="col-md-10">
+        <div class="form-group">
+            @Html.LabelFor(model => model.Developer.FirstName, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Developer.FirstName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Developer.FirstName, "", new { @class = "text-danger" })
+            </div>
         </div>
-        <div class="col-md-10">
-            <div class="form-group">
-                @Html.LabelFor(model => model.Developer.FirstName, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.Developer.FirstName, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.Developer.FirstName, "", new { @class = "text-danger" })
-                </div>
-            </div>
 
-            <div class="form-group">
-                @Html.LabelFor(model => model.Developer.LastName, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.Developer.LastName, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.Developer.LastName, "", new { @class = "text-danger" })
-                </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Developer.LastName, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Developer.LastName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Developer.LastName, "", new { @class = "text-danger" })
             </div>
+        </div>
 
-            <div class="form-group">
-                @Html.LabelFor(model => model.Developer.Position, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.DropDownListFor(model => model.Developer.Position, new SelectList(Model.DeveloperPositions, "Position", "Position"), new { htmlAttributes = new { @class = "form-control" } })
-                    @*@Html.DropDownListFor(model => model.Developer.Position, new SelectList(Model.DeveloperPositions, "Position", "Position"), new { @onchange = "this.form.submit();" })*@
-                    @*@Html.DropDownListFor(model => model.ID, (SelectList)ViewData["Student"], new { @onchange = "this.form.submit();" })*@
-                </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Position, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @if (Model.DeveloperPositions != null)
+                {
+                    @Html.DropDownListFor(model => model.Position, new SelectList(Model.DeveloperPositions, "Position", "Position"), new { @class = "form-control" })
+                }
             </div>
+        </div>
 
-            <div class="form-group">
-                @Html.LabelFor(model => model.Developer.SuperiorName, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @*@Html.DropDownListFor(model => model.PotentialSuperiors, new SelectList(Model.DeveloperPositions, "FullName", "FullName"), new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.DropDownListFor(model => model.PotentialSuperiors, Model.PotentialSuperiors, new { @class = "form-control" })*@
-                    @Html.DropDownListFor(model => model.Developer.SuperiorName, new SelectList(Model.PotentialSuperiors, "FullName", "FullName"), new { htmlAttributes = new { @class = "form-control" } })
-                </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.SuperiorName, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.SuperiorName, new SelectList(" "), "--Select Supervisor--", new { @class = "form-control" })
             </div>
+        </div>
 
-            <div class="form-group">
-                @Html.LabelFor(model => model.Developer.Photo, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    <input type="file" id="file" name="file" class="form-control" />
-                </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Photo, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input type="file" id="file" name="file" class="form-control" />
             </div>
+        </div>
 
-            <div class="form-group">
-                <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="Save" class="btn btn-default" />
-                </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
             </div>
         </div>
     </div>
+</div>
 }
 
 <div>
     @Html.ActionLink("Back to List", "Index")
 </div>
 
-@*@section Scripts {*@
-    @*@Scripts.Render("~/bundles/jqueryval")*@
-    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
-    <script>
-        //$(document).ready(function () {
-        $(document).on('change', '#Position', function () {
-            $("#Position").change(function () {
-                $.get("/DeveloperManager/GetSuperiorList", { Position: $("#Position").val() }, function (data) {
-                    $("#SuperiorName").empty();
-                    $.each(data, function (index, row) {
-                        $("#SuperiorName").append("<option value ='" + row.SuperiorName + "'>" + row.SuperiorName + "</option>")
-                    });
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script>
+    $(document).ready(function () {
+    //$(document).on('change', '#Position', function () {
+        $("#Position").change(function () {
+            $.get("/DeveloperManager/GetSuperiorList", { Position: $("#Position").val(), DeveloperId: $("#DeveloperId").val() }, function (data) {
+                $("#SuperiorName").empty();
+                $.each(data, function (index, row) {
+                    $("#SuperiorName").append("<option value ='" + row.FullName + "'>" + row.FullName + "</option>")
+                });
             });
         })
-      });
-    </script>
-@*}*@
+    });
+</script>
+

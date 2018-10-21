@@ -88,6 +88,7 @@ namespace StaffPositions.WebUI.Controllers
             {
                 DeveloperManagerViewModel ViewModel = new DeveloperManagerViewModel();
                 ViewModel.Developer = developer;
+                ViewModel.DeveloperId = DeveloperId;
                 ViewModel.DeveloperPositions = developerPositions.Collection();
 
                 //Get developers potential supervisors from the database based on his role
@@ -99,6 +100,7 @@ namespace StaffPositions.WebUI.Controllers
                         var potentialSuperiorsList = dbContext.Developers
                                         .SqlQuery("SELECT * FROM [StaffPositions].[dbo].[Developers] where Position = 'Team Lead' ORDER BY FullName ASC")
                                         .ToList<Developer>();
+                       
                         ViewModel.PotentialSuperiors = potentialSuperiorsList;
                         
                     }
@@ -107,6 +109,7 @@ namespace StaffPositions.WebUI.Controllers
                         var potentialSuperiorsList = dbContext.Developers
                                         .SqlQuery("SELECT * FROM [StaffPositions].[dbo].[Developers] where Position = 'Manager' ORDER BY FullName ASC")
                                         .ToList<Developer>();
+                        
                         ViewModel.PotentialSuperiors = potentialSuperiorsList;
                     }
                     else //Manager has no superior
@@ -120,6 +123,7 @@ namespace StaffPositions.WebUI.Controllers
                 }
 
                 return View(ViewModel);
+                
             }
 
         }
@@ -129,8 +133,9 @@ namespace StaffPositions.WebUI.Controllers
         {
             int DeveloperId;
             Developer developer = DeveloperViewModel.Developer;
-        
             DeveloperId = developer.DeveloperId;
+
+
             Developer developerToEdit = context.Find(DeveloperId);
             if (developerToEdit == null)
             {
@@ -148,9 +153,9 @@ namespace StaffPositions.WebUI.Controllers
                 developerToEdit.FirstName = developer.FirstName;
                 developerToEdit.LastName = developer.LastName;
                 developerToEdit.FullName = developer.FirstName + " " + developer.LastName;
-                developerToEdit.Photo = developerToEdit.Photo;
-                developerToEdit.Position = developer.Position;
-                developerToEdit.SuperiorName = developer.SuperiorName;
+                developerToEdit.Photo = developer.Photo;
+                developerToEdit.Position = DeveloperViewModel.Position;
+                developerToEdit.SuperiorName = DeveloperViewModel.SuperiorName;
 
                 //from postedfile
                 if (file != null)
@@ -203,7 +208,7 @@ namespace StaffPositions.WebUI.Controllers
         }
 
         //to update the superiors dropdown list based on the developer's position
-        public JsonResult GetSuperiorList(string Position)
+        public JsonResult GetSuperiorList(string Position, int DeveloperId)
         {
             List<Developer> potentialSuperiorsList = new List<Developer>();
             using (var dbContext = new DataContext())
@@ -211,19 +216,28 @@ namespace StaffPositions.WebUI.Controllers
                 dbContext.Configuration.ProxyCreationEnabled = false;
                 if (Position == "Developer")
                 {
-                    potentialSuperiorsList = dbContext.Developers.Where(x => x.Position == "Team Lead").ToList();
+                    potentialSuperiorsList = dbContext.Developers.Where(x => x.Position == "Team Lead" && x.DeveloperId != DeveloperId).ToList();
                 }
                 else if (Position == "Team Lead")
                 {
-                    potentialSuperiorsList = dbContext.Developers.Where(x => x.Position == "Manager").ToList();
+                    potentialSuperiorsList = dbContext.Developers.Where(x => x.Position == "Manager" && x.DeveloperId != DeveloperId).ToList();
                 }
                 else
                 {
                     potentialSuperiorsList.Add(new Developer { FirstName = "aaa", LastName = "aaa", FullName = "Not Supervised", Email = "aaaa@aaaa.aaa", Position = "aaa", Photo = "aaa", DeveloperId = 1000, SuperiorID = 10000, SuperiorName = "Not Supervised" });
                 }
-                
+
+                bool isEmpty = !potentialSuperiorsList.Any();
+                if (isEmpty)
+                {
+                    potentialSuperiorsList.Add(new Developer { FirstName = "aaa", LastName = "aaa", FullName = "Not Supervised", Email = "aaaa@aaaa.aaa", Position = "aaa", Photo = "aaa", DeveloperId = 1000, SuperiorID = 10000, SuperiorName = "No one found!" });
+                }
+                else
+                {
+                    //do nothing
+                }
             }
-            return Json(potentialSuperiorsList, JsonRequestBehavior.AllowGet)
+            return Json(potentialSuperiorsList, JsonRequestBehavior.AllowGet);
         }
     }
 }

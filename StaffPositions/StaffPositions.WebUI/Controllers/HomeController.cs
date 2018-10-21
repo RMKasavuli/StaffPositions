@@ -20,19 +20,28 @@ namespace StaffPositions.WebUI.Controllers
             developerPositions = developerPositionContext;
         }
 
-        public ActionResult Index(string Position = null)
+        public ActionResult Index(string Position = null, string Searching = null)
         {
             //get the list of developers, send them to the main view
             List<Developer> developers = context.Collection().ToList();
             List<DeveloperPosition> positions = developerPositions.Collection().ToList();
-          
-            if (Position == null)
+            
+
+            if (Position == null && (Searching == null | Searching == ""))//Show all
             {
                 developers = context.Collection().ToList();
             }
-            else
+            else if (!(Position == null) && (Searching == null | Searching == ""))
             {
                 developers = context.Collection().Where(p => p.Position == Position).ToList();
+            }
+            else if (Position == null && !(Searching == null | Searching == ""))
+            {
+                developers = context.Collection().Where(p => p.FullName.Contains(Searching)).ToList();
+            }
+            else//both must satisfy
+            {
+                developers = context.Collection().Where(p => p.FullName.Contains(Searching) && p.Position == Position).ToList();
             }
 
             DeveloperListViewModel model = new DeveloperListViewModel();

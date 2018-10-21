@@ -32,16 +32,22 @@ namespace StaffPositions.DataAccess.SQL.Migrations
                         SuperiorName = c.String(),
                         Id = c.String(),
                         CreateAt = c.DateTimeOffset(nullable: false, precision: 7),
+                        Discriminator = c.String(nullable: false, maxLength: 128),
+                        Developer_DeveloperId = c.Int(),
                     })
                 .PrimaryKey(t => t.DeveloperId)
                 .ForeignKey("dbo.Developers", t => t.SuperiorID)
-                .Index(t => t.SuperiorID);
+                .ForeignKey("dbo.Developers", t => t.Developer_DeveloperId)
+                .Index(t => t.SuperiorID)
+                .Index(t => t.Developer_DeveloperId);
             
         }
         
         public override void Down()
         {
+            DropForeignKey("dbo.Developers", "Developer_DeveloperId", "dbo.Developers");
             DropForeignKey("dbo.Developers", "SuperiorID", "dbo.Developers");
+            DropIndex("dbo.Developers", new[] { "Developer_DeveloperId" });
             DropIndex("dbo.Developers", new[] { "SuperiorID" });
             DropTable("dbo.Developers");
             DropTable("dbo.DeveloperPositions");

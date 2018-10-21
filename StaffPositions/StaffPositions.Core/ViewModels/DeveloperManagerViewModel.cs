@@ -8,11 +8,13 @@ using System.Threading.Tasks;
 
 namespace StaffPositions.Core.ViewModels
 {
-    public class DeveloperManagerViewModel
+    public class DeveloperManagerViewModel: Developer
     {
         //store developer, list of positions and list of potential superiors
         public Developer Developer { get; set; }
         public IEnumerable<DeveloperPosition> DeveloperPositions { get; set; }
         public IEnumerable<Developer> PotentialSuperiors { get; set; }
+
+        
     }
 }

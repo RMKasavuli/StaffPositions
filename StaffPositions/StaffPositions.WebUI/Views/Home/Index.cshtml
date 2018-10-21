@@ -6,6 +6,11 @@
 <h1>Staff</h1>
 
 <div class="col-md-2">
+    @using (Html.BeginForm("Index", "Home", FormMethod.Get))
+    {
+        @Html.TextBox("Searching")<input type="submit" value="Search" />
+    }
+
     <h4>Filter by Position</h4>
     <div class="list-group">
         @Html.ActionLink("All", "Index", null, new { @class = Request["Position"] == null ? "list-group-item active" : "list-group-item" })
@@ -20,9 +25,9 @@
 <div class="col-md-10">
     @foreach (var item in Model.Developers)
     {
-        <div class="col-md-4" style="height:440px;padding:10px;margin:10px;border: solid thin whitesmoke">
+        <div class="col-md-4" style="height:260px; width:230px; padding:10px;margin:10px;border: solid thin whitesmoke">
             <div class="col-md-12">
-                <img class="img" style="height:240px; width:240px; max-height: 100%; max-width: 100%" src="~/Content/DeveloperProfiles/@item.Photo" />
+                <img class="img" style="height:240px; width:210px; max-height: 100%; max-width: 100%" src="~/Content/DeveloperProfiles/@item.Photo" />
             </div>
             <div class="col-md-12">
                 <strong>
