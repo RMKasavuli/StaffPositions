@@ -16,6 +16,8 @@ namespace StaffPositions.WebUI
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+            //Enabling Bundling and Minification
+            BundleTable.EnableOptimizations = true;
         }
     }
 }

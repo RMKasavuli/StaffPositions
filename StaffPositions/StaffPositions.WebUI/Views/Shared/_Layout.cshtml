@@ -3,16 +3,18 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
-    @*@Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")*@
+    <title>@ViewBag.Title - ASP.NET MVSC Application</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
 
-    @Styles.Render("~/css/bootstrap.css")
-    @Scripts.Render("~/css/jumbotron-narrow.css")
+    @*@Styles.Render("~/css/bootstrap.css")
+    @Scripts.Render("~/css/carousel.css")*@
+
+    <link rel="icon" href="~/akilisoftwarelogo.ico">
 
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar navbar-inverse navbar-fixed-top"/>
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -20,8 +22,15 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-        
-                @Html.ActionLink("STAFF", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+
+                @*@Html.ActionLink("STAFF", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })*@
+
+                <p class="site-title">
+                    <a href="@Url.Action("Index", "Home")">
+                        <img src="~/Content/Logos/akilisoftwarelogo2.png" alt="" />
+                    </a>
+                </p>
+
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
