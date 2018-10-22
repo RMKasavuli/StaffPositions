@@ -98,16 +98,8 @@ namespace StaffPositions.WebUI.Models
         [DisplayName("Position")]
         public int PositionId { get; set; }
         public List<string> Positions = new List<string>
-        { "Manager","Team Lead", "Developer"};// { "Manager", "Developer" }
+        { "Manager","Team Lead", "Developer"};
       
-
-        //[Required]
-        //public string Street { get; set; }
-        //[Required]
-        //public string City { get; set; }
-        //public string State { get; set; }
-        //[Required]
-        //public string ZipCode { get; set; }//
     }
 
     public class ResetPasswordViewModel

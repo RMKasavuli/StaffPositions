@@ -48,13 +48,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataContext.cs" />
-    <Compile Include="Migrations\201810211750382_Initial.cs" />
-    <Compile Include="Migrations\201810211750382_Initial.Designer.cs">
-      <DependentUpon>201810211750382_Initial.cs</DependentUpon>
+    <Compile Include="Migrations\201810220623064_Initial.cs" />
+    <Compile Include="Migrations\201810220623064_Initial.Designer.cs">
+      <DependentUpon>201810220623064_Initial.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201810211751549_AddMigrations.cs" />
-    <Compile Include="Migrations\201810211751549_AddMigrations.Designer.cs">
-      <DependentUpon>201810211751549_AddMigrations.cs</DependentUpon>
+    <Compile Include="Migrations\201810220623563_AddDevelopers.cs" />
+    <Compile Include="Migrations\201810220623563_AddDevelopers.Designer.cs">
+      <DependentUpon>201810220623563_AddDevelopers.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="SQLDeveloperRepository.cs" />
@@ -72,11 +72,11 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201810211750382_Initial.resx">
-      <DependentUpon>201810211750382_Initial.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201810220623064_Initial.resx">
+      <DependentUpon>201810220623064_Initial.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201810211751549_AddMigrations.resx">
-      <DependentUpon>201810211751549_AddMigrations.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201810220623563_AddDevelopers.resx">
+      <DependentUpon>201810220623563_AddDevelopers.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

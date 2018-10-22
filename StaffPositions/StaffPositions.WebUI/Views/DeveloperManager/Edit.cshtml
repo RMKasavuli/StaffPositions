@@ -43,7 +43,7 @@
             <div class="col-md-10">
                 @if (Model.DeveloperPositions != null)
                 {
-                    @Html.DropDownListFor(model => model.Position, new SelectList(Model.DeveloperPositions, "Position", "Position"), new { @class = "form-control" })
+                    @Html.DropDownListFor(model => model.Position, new SelectList(Model.DeveloperPositions, "Position", "Position"),"--Select Position--", new { @class = "form-control" })
                 }
             </div>
         </div>

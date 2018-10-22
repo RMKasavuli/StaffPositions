@@ -12,6 +12,7 @@ using System.Runtime.InteropServices;
 
 namespace StaffPositions.WebUI.Controllers
 {
+    
     public class DeveloperManagerController : Controller
     {
         IDeveloperRepository<Developer> context;
@@ -30,6 +31,8 @@ namespace StaffPositions.WebUI.Controllers
         }
 
         //cretae new developer
+        //[CustomAuthorize(Email = "gaspard@dev.com")]
+        [Authorize(Roles = "Admin")]
         public ActionResult Create()//to display the page only
         {
             Developer model = new Developer();
@@ -37,6 +40,7 @@ namespace StaffPositions.WebUI.Controllers
         }
 
         [HttpPost]//getting info from Create view
+        [Authorize(Roles = "Admin")]
         public ActionResult Create(Developer model, HttpPostedFileBase file)//to fill in the details
         {
             
@@ -74,6 +78,8 @@ namespace StaffPositions.WebUI.Controllers
         }
 
         //edit developer
+        //[CustomAuthorize(Email = "gaspard@dev.com")]
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit(int DeveloperId)//to find the developer
         {
             //find the developer
@@ -129,6 +135,7 @@ namespace StaffPositions.WebUI.Controllers
         }
 
         [HttpPost]//getting info from a page
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit(DeveloperManagerViewModel DeveloperViewModel, HttpPostedFileBase file)//to edit the developer
         {
             int DeveloperId;
@@ -175,6 +182,9 @@ namespace StaffPositions.WebUI.Controllers
             }
         }
 
+        //delete a developer
+        //[CustomAuthorize(Email = "gaspard@dev.com")]
+        [Authorize(Roles = "Admin")]
         public ActionResult Delete(int DeveloperId)//to find the developer to delete
         {
             Developer developerToDelete = context.Find(DeveloperId);
@@ -191,6 +201,7 @@ namespace StaffPositions.WebUI.Controllers
 
         [HttpPost]
         [ActionName("Delete")]
+        [Authorize(Roles = "Admin")]
         public ActionResult ConfirmDelete(Developer developer, int DeveloperId)//to find the developer to delete
         {
             Developer developerToDelete = context.Find(DeveloperId);

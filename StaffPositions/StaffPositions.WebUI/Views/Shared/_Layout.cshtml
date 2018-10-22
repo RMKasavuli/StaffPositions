@@ -26,13 +26,12 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("Position Admin", "Index", "DeveloperPositionManager")</li>
-                    <li>@Html.ActionLink("Manage Employees", "Index", "DeveloperManager")</li>
+                    <li>@Html.ActionLink("Admin", "Index", "Admin")</li>
+                    @*<li>@Html.ActionLink("Position Admin", "Index", "DeveloperPositionManager")</li>
+                    <li>@Html.ActionLink("Manage Employees", "Index", "DeveloperManager")</li>*@
                 </ul>
                 @Html.Partial("_LoginPartial")
-                @*@{ 
-                    Html.RenderAction("BasketSummary", "Basket");
-                }*@
+             
             </div>
         </div>
     </div>
