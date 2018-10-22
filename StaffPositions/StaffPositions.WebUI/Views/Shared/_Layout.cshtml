@@ -4,6 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - ASP.NET MVSC Application</title>
+    
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 
@@ -23,8 +24,6 @@
                     <span class="icon-bar"></span>
                 </button>
 
-                @*@Html.ActionLink("STAFF", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })*@
-
                 <p class="site-title">
                     <a href="@Url.Action("Index", "Home")">
                         <img src="~/Content/Logos/akilisoftwarelogo2.png" alt="" />
@@ -42,6 +41,7 @@
             </div>
         </div>
     </div>
+
     <div class="container body-content">
         @RenderBody()
         <hr />
