@@ -6,6 +6,7 @@ using System.Web.Mvc;
 
 namespace StaffPositions.WebUI.Controllers
 {
+    [Authorize(Roles ="Admin")]
     public class AdminController : Controller
     {
         // GET: Admin

@@ -18,7 +18,7 @@ namespace StaffPositions.WebUI.Controllers
 
         public ManageController()
         {
-            _userManager.AddToRole("", "Admin");
+            _userManager.AddToRole("","Admin");
         }
 
         public ApplicationSignInManager SignInManager

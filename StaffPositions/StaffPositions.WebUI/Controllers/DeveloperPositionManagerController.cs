@@ -26,8 +26,6 @@ namespace StaffPositions.WebUI.Controllers
 
 
         //cretae new developer position
-        //[CustomAuthorize(Email = "gaspard@dev.com")]
-        [Authorize(Roles = "Admin")]
         public ActionResult Create()//to display the page only
         {
             DeveloperPosition developerPosition = new DeveloperPosition();
@@ -51,8 +49,6 @@ namespace StaffPositions.WebUI.Controllers
         }
 
         //edit developer position
-        //[CustomAuthorize(Email = "gaspard@dev.com")]
-        [Authorize(Roles = "Admin")]
         public ActionResult Edit(string Id)//to find the developer position
         {
             //find the developer position
@@ -68,7 +64,6 @@ namespace StaffPositions.WebUI.Controllers
         }
 
         [HttpPost]//getting info from a page
-        [Authorize(Roles = "Admin")]
         public ActionResult Edit(DeveloperPosition developerPosition, string Id)//to edit the developer
         {
             DeveloperPosition developerPositionToEdit = context.Find(Id);
@@ -95,8 +90,6 @@ namespace StaffPositions.WebUI.Controllers
         }
 
         //delete a developer position
-        //[CustomAuthorize(Email = "gaspard@dev.com")]
-        [Authorize(Roles = "Admin")]
         public ActionResult Delete(string Id)//to find the developer position to delete
         {
             DeveloperPosition developerPositionToDelete = context.Find(Id);
@@ -112,7 +105,6 @@ namespace StaffPositions.WebUI.Controllers
 
         [HttpPost]
         [ActionName("Delete")]
-        [Authorize(Roles = "Admin")]
         public ActionResult ConfirmDelete(DeveloperPosition developerPosition, string Id)//to find the developer position to delete
         {
             DeveloperPosition developerPositionToDelete = context.Find(Id);
